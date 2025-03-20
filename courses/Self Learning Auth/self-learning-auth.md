@@ -28,10 +28,20 @@ The Risk: The JWT payload is encoded but not encrypted, making it readable by an
 
 Solution: If you must transmit sensitive information, consider using JSON Web Encryption (JWE) for full encryption.
 
+# Identity Provider (IdP) vs Service Provider (SP)
+- Identity Provider is the auth server
+- Service Provider  is the resource server 
+
+In order for the service provider to use a identity provider with SSO, it has to implement the same protocol (SAML, OIDC, WS-Fed)
 
 # SSO (Single Sign On)
 > Single Sign-on (SSO) occurs when a user logs in to one application and is then signed in to other applications automatically, regardless of the platform, technology, or domain the user is using. The user signs in only one time, hence the name of the feature (Single Sign-on).
 
+## SAML
+> a protocol for implementing SSO
+
+### SAML Assertion
+Is a XML file that is used between SP and IdP to convey information about user identity and authorization status
 
 # OAuth 
 > The OAuth 2.0 **authorization framework** enables a third-party 
@@ -48,6 +58,8 @@ Solution: If you must transmit sensitive information, consider using JSON Web En
 # OpenId Connect - OIDC
 > OpenID Connect or OIDC is an identity protocol that utilizes the authorization and authentication mechanisms of OAuth 2.0. The OIDC final specification was published on February 26, 2014, and is now widely adopted by many identity providers on the Internet
 
+# Federate
+To transfer information, particularly authenticantion and authorization, securely between domains
 
 # References
 
@@ -56,3 +68,25 @@ Solution: If you must transmit sensitive information, consider using JSON Web En
 - https://auth0.com/docs/authenticate/protocols/oauth
 - https://auth0.com/docs/authenticate/single-sign-on 
 - https://auth0.com/intro-to-iam/what-is-openid-connect-oidc 
+
+
+
+
+# Random Notes
+
+## OAuth + openId Connect MultTenant thirdy party auth server
+- implement identifier-first login prompt
+- implement OpenId Connect for SSO
+- implement SAML for SSO
+- add password support after identifier-first login prompt for existing non-federated accounts
+- support account linking and unlinking
+
+## OAuth API Identity Provider
+- implement OAuth 2.0 server
+- implement consent prompt
+- implement consent and token revocation
+- implement token introspection for opaque tokens
+- implement jwt for stateless authorization
+
+# References
+- https://www.youtube.com/watch?v=32TMFI4itqo
