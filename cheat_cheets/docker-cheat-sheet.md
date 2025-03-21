@@ -16,6 +16,8 @@ obtém os logs exibidos por um determinado container em execução
 create and run a container from a image
 <command-name> execute additional command inside the container
 
+- `docker run --detach --name iam-api-test 
+
 ### docker ps
 list all running containers
 `--all` : mostra todos os containers já executados
@@ -39,6 +41,7 @@ executa um novo comando dentro de um container em execução
 ### Build
 `docker build --progress=plain .`
 Constroi uma imagem e exibe as etapas do processo
+
 
 
 =====================================================================
