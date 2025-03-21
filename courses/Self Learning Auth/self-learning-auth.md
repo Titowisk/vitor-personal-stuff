@@ -43,12 +43,19 @@ In order for the service provider to use a identity provider with SSO, it has to
 ### SAML Assertion
 Is a XML file that is used between SP and IdP to convey information about user identity and authorization status
 
+it may contain
+- name, email
+- roles, permissions
+- issuance time, expiry time
+
 # OAuth 
 > The OAuth 2.0 **authorization framework** enables a third-party 
    application to obtain limited access to an HTTP service, either on
    behalf of a resource owner by orchestrating an approval interaction
    between the resource owner and the HTTP service, or by allowing the
    third-party application to obtain access on its own behalf.
+
+It focus on thirdy party authorization to resources
 
 # Passkeys
 > Passkeys is developed by the FIDO alliance,  and is an authentication method designed to eliminate the need for passwords, providing a seamless login experience without compromising security. Rather than relying on a string of characters (like a password), passkeys use asymmetric cryptography, aka public-key cryptography  to authenticate users.
