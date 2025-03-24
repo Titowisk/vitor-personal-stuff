@@ -57,6 +57,35 @@ it may contain
 
 It focus on thirdy party authorization to resources
 
+## OAuth Flows
+### Authorization code flow
+Thirdy party app wants to access user's protected resource from another resource server
+- app sends the user to the authorization URL
+- user logs in in the authorization server (AS)
+- AS provides access token and refresh token to app
+- app uses access token to get protected information of user from the resource server
+
+Example: TodoIst app wants to know user's google calendar data. Directs user to google url for authorization (and authentication). Get access token to retrieve calendar data of the user from google.
+
+### Client Credentials flow 
+App wants to access user's protected resource from its own resource server. (Machine to Machine scenario)
+- app uses client_id and client_secret to request authorization from AS
+- AS provides access token to app get information from its own resource server
+
+### Resource Owner password flow
+Like the Authorization code flow, but the app get user login directly instead of leading the user to the authorization server to login
+
+### Implicit flow
+It's a simplified version of the Authorization code flow
+
+## Access Token types
+### Identifier-based
+Identifier-based token is a hard-to-guess string, which the **resource server needs to validate by making a call to the authorisation server's introspection endpoint**, 
+which adds latency and makes it difficult to scale with distributed applications.
+
+### Self-contained
+Self-contained bearer tokens are easy to scale with distributed applications as they do not require the resource server to validate the token with the authorization server
+
 # Passkeys
 > Passkeys is developed by the FIDO alliance,  and is an authentication method designed to eliminate the need for passwords, providing a seamless login experience without compromising security. Rather than relying on a string of characters (like a password), passkeys use asymmetric cryptography, aka public-key cryptography  to authenticate users.
 
@@ -75,8 +104,7 @@ To transfer information, particularly authenticantion and authorization, securel
 - https://auth0.com/docs/authenticate/protocols/oauth
 - https://auth0.com/docs/authenticate/single-sign-on 
 - https://auth0.com/intro-to-iam/what-is-openid-connect-oidc 
-
-
+- https://www.youtube.com/watch?v=ZDuRmhLSLOY 
 
 
 # Random Notes
