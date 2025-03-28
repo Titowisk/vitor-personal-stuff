@@ -28,10 +28,25 @@ The Risk: The JWT payload is encoded but not encrypted, making it readable by an
 
 Solution: If you must transmit sensitive information, consider using JSON Web Encryption (JWE) for full encryption.
 
+# Identity Provider (IdP) vs Service Provider (SP)
+- Identity Provider is the auth server
+- Service Provider  is the resource server 
+
+In order for the service provider to use a identity provider with SSO, it has to implement the same protocol (SAML, OIDC, WS-Fed)
 
 # SSO (Single Sign On)
 > Single Sign-on (SSO) occurs when a user logs in to one application and is then signed in to other applications automatically, regardless of the platform, technology, or domain the user is using. The user signs in only one time, hence the name of the feature (Single Sign-on).
 
+## SAML
+> a protocol for implementing SSO
+
+### SAML Assertion
+Is a XML file that is used between SP and IdP to convey information about user identity and authorization status
+
+it may contain
+- name, email
+- roles, permissions
+- issuance time, expiry time
 
 # OAuth 
 > The OAuth 2.0 **authorization framework** enables a third-party 
@@ -39,6 +54,37 @@ Solution: If you must transmit sensitive information, consider using JSON Web En
    behalf of a resource owner by orchestrating an approval interaction
    between the resource owner and the HTTP service, or by allowing the
    third-party application to obtain access on its own behalf.
+
+It focus on thirdy party authorization to resources
+
+## OAuth Flows
+### Authorization code flow
+Thirdy party app wants to access user's protected resource from another resource server
+- app sends the user to the authorization URL
+- user logs in in the authorization server (AS)
+- AS provides access token and refresh token to app
+- app uses access token to get protected information of user from the resource server
+
+Example: TodoIst app wants to know user's google calendar data. Directs user to google url for authorization (and authentication). Get access token to retrieve calendar data of the user from google.
+
+### Client Credentials flow 
+App wants to access user's protected resource from its own resource server. (Machine to Machine scenario)
+- app uses client_id and client_secret to request authorization from AS
+- AS provides access token to app get information from its own resource server
+
+### Resource Owner password flow
+Like the Authorization code flow, but the app get user login directly instead of leading the user to the authorization server to login
+
+### Implicit flow
+It's a simplified version of the Authorization code flow
+
+## Access Token types
+### Identifier-based
+Identifier-based token is a hard-to-guess string, which the **resource server needs to validate by making a call to the authorisation server's introspection endpoint**, 
+which adds latency and makes it difficult to scale with distributed applications.
+
+### Self-contained
+Self-contained bearer tokens are easy to scale with distributed applications as they do not require the resource server to validate the token with the authorization server
 
 # Passkeys
 > Passkeys is developed by the FIDO alliance,  and is an authentication method designed to eliminate the need for passwords, providing a seamless login experience without compromising security. Rather than relying on a string of characters (like a password), passkeys use asymmetric cryptography, aka public-key cryptography  to authenticate users.
@@ -48,6 +94,8 @@ Solution: If you must transmit sensitive information, consider using JSON Web En
 # OpenId Connect - OIDC
 > OpenID Connect or OIDC is an identity protocol that utilizes the authorization and authentication mechanisms of OAuth 2.0. The OIDC final specification was published on February 26, 2014, and is now widely adopted by many identity providers on the Internet
 
+# Federate
+To transfer information, particularly authenticantion and authorization, securely between domains
 
 # References
 
@@ -56,3 +104,24 @@ Solution: If you must transmit sensitive information, consider using JSON Web En
 - https://auth0.com/docs/authenticate/protocols/oauth
 - https://auth0.com/docs/authenticate/single-sign-on 
 - https://auth0.com/intro-to-iam/what-is-openid-connect-oidc 
+- https://www.youtube.com/watch?v=ZDuRmhLSLOY 
+
+
+# Random Notes
+
+## OAuth + openId Connect MultTenant thirdy party auth server
+- implement identifier-first login prompt
+- implement OpenId Connect for SSO
+- implement SAML for SSO
+- add password support after identifier-first login prompt for existing non-federated accounts
+- support account linking and unlinking
+
+## OAuth API Identity Provider
+- implement OAuth 2.0 server
+- implement consent prompt
+- implement consent and token revocation
+- implement token introspection for opaque tokens
+- implement jwt for stateless authorization
+
+# References
+- https://www.youtube.com/watch?v=32TMFI4itqo
