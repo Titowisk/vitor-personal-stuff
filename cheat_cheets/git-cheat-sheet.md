@@ -57,3 +57,37 @@ git branch -r
 `git push --atomic origin <branch name> <tag>`
 
 git push --atomic origin master v0.5.1
+
+# Rename local branch not yet pushed
+`git branch -m <new_name>`
+
+# Stash uncommitted changes
+Temporarily shelves (or stashes) changes you've made to your working copy so you can work on something else, and then come back and re-apply them later on. Stashing is handy if you need to quickly switch context and work on something else, but you're mid-way through a code change and aren't ready to commit.
+
+## Stash your current changes
+`git stash`
+or with a message:
+`git stash save "your descriptive message"`
+
+## List your stashes
+`git stash list`
+
+## Re-apply stashed changes
+To re-apply the most recently stashed changes and remove them from the stash list:
+`git stash pop`
+
+To re-apply a specific stash (e.g., `stash@{0}`) without removing it from the stash list:
+`git stash apply stash@{0}`
+
+## View stash diff
+To see the diff of a stash (e.g., the most recent one):
+`git stash show -p`
+For a specific stash:
+`git stash show -p stash@{1}`
+
+## Delete stashes
+To delete a specific stash (e.g., `stash@{0}`):
+`git stash drop stash@{0}`
+
+To delete all stashes:
+`git stash clear`
