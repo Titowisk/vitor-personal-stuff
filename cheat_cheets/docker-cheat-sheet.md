@@ -38,11 +38,22 @@ executa um novo comando dentro de um container em execução
 
 ## Images
 
-### Build
+### Build https://docs.docker.com/reference/cli/docker/buildx/build/
 `docker build --progress=plain .`
 Constroi uma imagem e exibe as etapas do processo
 
+docker build -f src\Yaba.Worker.Categorizer\Dockerfile -t yaba-worker-categorizer:v0.1.0 .
 
+===
+
+# Dockerhub
+
+## docker push https://docs.docker.com/reference/cli/docker/image/push/
+
+- docker login
+    - insert credentials
+- if necessary: docker tag local-image:tagname new-repo:tagname
+- docker push new-repo:tagname
 
 =====================================================================
 
@@ -54,12 +65,19 @@ Constroi uma imagem e exibe as etapas do processo
 run a new instance of container from image for all images
 Equivalente a chamar o `docker run myimage`
 
+
+
 ### --detach
 evita que os logs da aplicação sejam exibidos no cmd atual
 
 ### --build
 Equivalente a chamar o `docker build .` antes
 
+### Rebuild only the API service
+`docker-compose build --no-cache [service]`
+
+### Start only specific services
+`docker-compose up [service1] [service2]`
 
 ## docker compose down
 remove todos os containers
@@ -85,3 +103,5 @@ https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/docker/building-ne
 
 OTEL COLECTOR
 docker run -d --rm -it -p 4317:4317 -p 4318:4318 -v e/Projetos/Kinvo/otel.colector:/cfg otel/opentelemetry-collector-contrib:latest --config=/cfg/config.yaml
+
+
