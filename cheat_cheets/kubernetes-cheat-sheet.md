@@ -32,9 +32,13 @@ kubectl delete -f nginx-deployment.yaml
 `kubectl logs -f [pod-name]`
 ---
 # minikube
+ToDo
+---
 
-# start
+# Helm
 
-# image
+## Helm Template
 
-## load 
+`helm template <release-name> <chart-path> > output.yaml`
+helm template confluent-operator confluentinc/confluent-for-kubernetes > output.yaml
+helm upgrade   
