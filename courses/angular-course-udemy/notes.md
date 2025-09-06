@@ -100,6 +100,22 @@ you can define custom component properties by using `input` from signal. Must no
 # Services
 A way to encapsulate logic from components and keep them small
 
+# Modules
+Angular modules exist for historic reasons. 
+`standalone` components are new, before them modules were used.
+standalone components are the recommended way of building components
+```js
+@Component({
+  selector: 'app-task',
+  standalone: true,
+  imports: [CardComponent, DatePipe],
+  templateUrl: './task.component.html',
+  styleUrl: './task.component.css'
+})
+```
+From Angular 19 going forwardm standalone components are default.
+Before that, Modules were the default
+
 # Good Practices
 
 - keep your components as lean as possible: this can be achieved using services
