@@ -47,6 +47,12 @@ You can use components to create standard ui or behavior that can be shared with
 **Content Projection**:
 `ng-content`
 
+## Component Selectors
+- https://angular.dev/guide/components/selectors 
+
+When dealing with component re-usage, sometimes its better to use a different kind of selector, to avoid unnecessary elements in the DOM.
+The angular selector can cover dom elements, class, etc. (works like a css selector)
+
 # Directives
 You can enhance elements by adding Directives to them.
 Directives, unlike components, don't have a template!
@@ -116,6 +122,23 @@ standalone components are the recommended way of building components
 From Angular 19 going forwardm standalone components are default.
 Before that, Modules were the default
 
+# Debugging
+
+## Chrome Dev Tools
+You can use chrome dev tools to debug the application because it can know about your code. Going to the `Source` tab of the devtools it's possible to find it and put breakpoints and debug
+
+## Angular Dev Tools
+A more robust and focused tools to debug angular applications
+
+# Splitting Components
+Splitting components is a matter of **separation of concerns**.
+
+Every component should only do "one thing".
+
+Separation of Concerns vs Simplicity & Code Colocation
+
 # Good Practices
 
 - keep your components as lean as possible: this can be achieved using services
+- whenever you find code, logic or markup duplication there's a opportunity to create a reusable/shared component to deal with that
+  - it depends on the context whether you should do it or not
